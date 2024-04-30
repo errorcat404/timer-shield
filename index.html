@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Таймер обратного отсчета</title>
+    <style>
+        /* Стиль таймера */
+        body{
+            display: flex;
+            justify-content: center;
+            background: black;
+            user-select: none;
+        }
+        .div{
+            border: 1px solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            height: 700px;
+            flex-direction: column;
+        }
+        h1{
+            color: white;
+            font-size: 75px;
+        }
+        #countdown {
+            font-family: Arial, sans-serif;
+            font-size: 80px;
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        <h1>
+            Восхождение героя щита 4 сезон
+        </h1>
+        <div class="time" id="countdown">
+                Загрузка...
+        </div>
+    </div>
+    <script>
+        // Устанавливаем конечную дату и время
+        const endDate = new Date('December 31, 2024 03:00:00').getTime();
+
+        function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = endDate - now;
+
+    // Если время еще не истекло
+    if (distance > 0) {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Обновляем текст таймера
+        document.getElementById('countdown').textContent = `${days} дней ${hours} часов ${minutes} минут ${seconds} секунд`;
+    } else {
+        // Если время истекло
+        document.getElementById('countdown').textContent = 'Восхождение героя щита 4 сезон вышел!';
+        clearInterval(timer);
+    }
+}
+
+// Обновление таймера каждую секунду
+const timer = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
